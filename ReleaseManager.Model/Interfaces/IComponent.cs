@@ -1,4 +1,4 @@
-﻿namespace ReleaseManager
+﻿namespace ReleaseManager.Model.Interfaces
 {
     public interface IComponent
     {

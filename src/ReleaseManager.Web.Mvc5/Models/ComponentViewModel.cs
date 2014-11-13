@@ -1,5 +1,7 @@
 ﻿namespace ReleaseManager.Web.Models
 {
+    using Model.Interfaces;
+
     public class ComponentViewModel
     {
         public ComponentViewModel()

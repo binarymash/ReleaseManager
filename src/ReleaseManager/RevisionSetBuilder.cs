@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public class RevisionSetBuilder : IRevisionSetBuilder
     {
         private readonly IIssueRepository issueRepo;

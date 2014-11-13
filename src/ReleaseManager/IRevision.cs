@@ -1,6 +1,7 @@
 ﻿namespace ReleaseManager
 {
     using System;
+    using Model.Interfaces;
 
     public interface IRevision
     {

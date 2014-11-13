@@ -2,6 +2,8 @@
 
 namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public class Revision : IRevision
     {
         private readonly ILogItem logItem;

@@ -4,6 +4,7 @@ namespace ReleaseManager.Web.Controllers
 {
     using System.Linq;
     using System.Web.Mvc;
+    using Model.Interfaces;
     using ReleaseManager.Web.Models;
 
     public class ComponentController : Controller

@@ -1,6 +1,7 @@
 ﻿namespace ReleaseManager.Web.Models
 {
     using System.Collections.Generic;
+    using Model.Interfaces;
 
     public class ReleaseUpdateModel
     {

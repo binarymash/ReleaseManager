@@ -1,5 +1,7 @@
 ﻿namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public class VersionWork : IVersionWork
     {
         private readonly IRevisionSetBuilder builder;

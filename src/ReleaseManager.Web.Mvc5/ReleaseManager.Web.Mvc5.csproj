@@ -213,6 +213,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ReleaseManager.Model\ReleaseManager.Model.csproj">
+      <Project>{0617a147-f56f-42f1-9e60-99545c08de10}</Project>
+      <Name>ReleaseManager.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.Tracking.Jira\ReleaseManager.Tracking.Jira.csproj">
+      <Project>{D37A8602-ECC2-4160-AFEE-CE1F29BEF2F0}</Project>
+      <Name>ReleaseManager.Tracking.Jira</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReleaseManager\ReleaseManager.csproj">
       <Project>{f53efe12-779e-46c9-9441-acdd7a1c434e}</Project>
       <Name>ReleaseManager</Name>

@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReleaseManager
+﻿namespace ReleaseManager.Data.Interfaces
 {
+    using System;
+    using System.Collections.Generic;
+    using Model.Interfaces;
+
     public interface IEntityRepository
     {
         IList<IRelease> GetReleases();

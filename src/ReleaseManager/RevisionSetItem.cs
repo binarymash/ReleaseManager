@@ -2,6 +2,8 @@
 
 namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public class RevisionSetItem : IRevisionSetItem
     {
         private readonly IRevision revision;

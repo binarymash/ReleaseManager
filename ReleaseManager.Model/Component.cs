@@ -1,5 +1,7 @@
-﻿namespace ReleaseManager.NHibernate
+﻿namespace ReleaseManager.Model
 {
+    using Interfaces;
+
     public class Component : IComponent
     {
         public virtual int Id { get; protected set; }

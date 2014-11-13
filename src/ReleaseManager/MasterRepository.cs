@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ReleaseManager.Model.Interfaces;
 
 namespace ReleaseManager
 {
+    using Data.Interfaces;
+
     public class MasterRepository
     {
         private readonly IRevisionSetBuilder builder;

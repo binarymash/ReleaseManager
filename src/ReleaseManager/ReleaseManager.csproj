@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <OldToolsVersion>0.0</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
@@ -32,6 +32,7 @@
     <DebugType>full</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\Output\</OutputPath>
@@ -44,6 +45,7 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>ReleaseManager</RootNamespace>
@@ -56,12 +58,6 @@
     <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections">
-      <HintPath>..\..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=3.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NHibernate.3.2.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="SharpSvn">
       <HintPath>..\..\lib\SharpSvn.dll</HintPath>
@@ -80,63 +76,13 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="IVersionWork.cs" />
-    <Compile Include="IIssueCollection.cs" />
-    <Compile Include="Jira\IJiraConfig.cs" />
-    <Compile Include="Jira\IJiraSoapClient.cs" />
-    <Compile Include="Jira\IStatusMap.cs" />
-    <Compile Include="Jira\JiraConfig.cs" />
-    <Compile Include="Jira\JiraConfigException.cs" />
-    <Compile Include="Jira\IRemoteIssue.cs" />
-    <Compile Include="Jira\IRemoteStatus.cs" />
-    <Compile Include="Jira\SoapClient\JiraSoapServiceClient.cs" />
-    <Compile Include="Jira\SoapClient\RemoteIssue.cs" />
-    <Compile Include="Jira\SoapClient\RemoteStatus.cs" />
-    <Compile Include="Jira\StatusMapItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NHibernate\Component.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NHibernate\NHibernateRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NHibernate\Release.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="NHibernate\RevisionOverride.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\GetLogItemsArgs.cs" />
-    <Compile Include="Subversion\ISvnConfig.cs" />
-    <Compile Include="Subversion\SvnConfigException.cs" />
-    <Compile Include="Subversion\SvnConfig.cs" />
-    <Compile Include="Subversion\SvnInfoEventArgsWrapper.cs" />
     <Compile Include="VersionWork.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="NHibernate\Version.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IComponent.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IEntityRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IIssue.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ILogItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IRelease.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IRevision.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IRevisionOverride.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="IRevisionCollection.cs">
@@ -148,23 +94,7 @@
     <Compile Include="IRevisionSetItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IVersion.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IIssueRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Jira\Issue.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Jira\IssueCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Jira\JiraRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Jira\SoapClient\JiraSoapReference.cs" />
-    <Compile Include="Jira\StatusMap.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MasterRepository.cs">
@@ -182,39 +112,6 @@
     <Compile Include="RevisionSetItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Subversion\Extractor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\DirectiveExtractor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\ISvnClient.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IVersionControlRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\LogItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\SvnClientWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\SvnGetLogException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\SvnLogEventArgsWrapper.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\SvnRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Subversion\TicketExtractor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -222,11 +119,18 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NHibernate\Mappings\Component.hbm.xml" />
-    <EmbeddedResource Include="NHibernate\Mappings\Release.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NHibernate\Mappings\Version.hbm.xml" />
+    <ProjectReference Include="..\..\ReleaseManager.Data.Interfaces\ReleaseManager.Data.Interfaces.csproj">
+      <Project>{051bdb11-d231-47e0-a961-48d070fd6d07}</Project>
+      <Name>ReleaseManager.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.Model\ReleaseManager.Model.csproj">
+      <Project>{0617a147-f56f-42f1-9e60-99545c08de10}</Project>
+      <Name>ReleaseManager.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.VersionControl.Interfaces\ReleaseManager.VersionControl.Interfaces.csproj">
+      <Project>{4940E95D-0D90-4CB0-8351-2981AB06A366}</Project>
+      <Name>ReleaseManager.VersionControl.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

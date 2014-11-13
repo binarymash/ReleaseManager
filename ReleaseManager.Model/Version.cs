@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReleaseManager.NHibernate
+﻿namespace ReleaseManager.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using Interfaces;
+
     public class Version: IVersion
     {
         public Version()

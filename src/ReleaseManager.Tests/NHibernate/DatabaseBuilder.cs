@@ -1,5 +1,8 @@
 ﻿namespace ReleaseManager.Tests.Persistence
 {
+    using Data.Interfaces;
+    using Model;
+    using Model.Interfaces;
     using NUnit.Framework;
     using global::NHibernate;
     using global::NHibernate.Cfg;

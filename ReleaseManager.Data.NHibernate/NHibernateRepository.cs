@@ -7,6 +7,10 @@ using System.Linq;
 
 namespace ReleaseManager.NHibernate
 {
+    using Data.Interfaces;
+    using Model;
+    using Model.Interfaces;
+
     public class NHibernateRepository : IEntityRepository, IDisposable
     {
         private static NHibernateRepository instance;

@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace ReleaseManager.NHibernate
+﻿namespace ReleaseManager.Model
 {
+    using System;
+    using Interfaces;
+
     public class RevisionOverride : IRevisionOverride
     {
         public override bool Equals(object obj)

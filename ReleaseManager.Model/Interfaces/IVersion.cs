@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ReleaseManager
+﻿namespace ReleaseManager.Model.Interfaces
 {
+    using System.Collections.Generic;
+
     public interface IVersion
     {
         IRelease Release { get; }

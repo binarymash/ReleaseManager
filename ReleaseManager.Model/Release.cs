@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace ReleaseManager.NHibernate
+﻿namespace ReleaseManager.Model
 {
+    using System;
+    using ReleaseManager.Model.Interfaces;
+
     public class Release : IRelease
     {
         public virtual int Id { get; set; }

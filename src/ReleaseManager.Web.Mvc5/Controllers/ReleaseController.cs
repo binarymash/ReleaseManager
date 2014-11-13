@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using System.Collections.Generic;
+    using Model.Interfaces;
     using ReleaseManager.Web.Models;
 
     public class ReleaseController : Controller
