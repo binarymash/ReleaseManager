@@ -43,7 +43,7 @@
 
         public void DeleteRelease(IRelease release)
         {
-            IList<IVersion> versions = this.GetVersionsInRelease(release.Name);
+            IQueryable<IVersion> versions = this.GetVersionsInRelease(release.Name);
 
             using (ISession session = this.sessionFactory.OpenSession())
             {
@@ -87,7 +87,7 @@
 
             using (ISession session = this.sessionFactory.OpenSession())
             {
-                IList<Component> components =
+                var components =
                     session
                         .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, componentName))
                         .AddEntity("Component", typeof(Component))
@@ -101,7 +101,7 @@
             }
         }
 
-        public IList<IComponent> GetComponents()
+        public IQueryable<IComponent> GetComponents()
         {
             const string query =
                 @"select
@@ -116,8 +116,7 @@
                 return session
                     .CreateSQLQuery(query)
                     .AddEntity("Component", typeof(Component))
-                    .List<Component>()
-                    .ToList<IComponent>();
+                    .List<Component>().AsQueryable();
             }
         }
         
@@ -141,7 +140,7 @@
             
             using (ISession session = this.sessionFactory.OpenSession())
             {
-                IList<Release> releases = session
+                var releases = session
                     .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, releaseName))
                     .AddEntity("Release", typeof(Release))
                     .List<Release>();
@@ -154,7 +153,7 @@
             }
         }
 
-        public IList<IRelease> GetReleases()
+        public IQueryable<IRelease> GetReleases()
         {
             const string query =
                 @"select
@@ -169,10 +168,8 @@
             {
                 return session
                     .CreateSQLQuery(query)
-                    .AddEntity("Release", typeof(Release))
-                    .List<Release>()
-                    .Cast<IRelease>()
-                    .ToList();
+                    .AddEntity("Release", typeof (Release))
+                    .List<Release>().AsQueryable();
             }
         }
 
@@ -198,7 +195,7 @@
                         r.Name = '{0}'
                         and c.Name = '{1}'";
                 
-                IList<IVersion> versions = 
+                var versions = 
                     session
                         .CreateSQLQuery(string.Format(
                             CultureInfo.InvariantCulture, 
@@ -216,7 +213,7 @@
             }
         }
 
-        public IList<IVersion> GetVersionsInRelease(string releaseName)
+        public IQueryable<IVersion> GetVersionsInRelease(string releaseName)
         {
             using (ISession session = this.sessionFactory.OpenSession())
             {
@@ -237,11 +234,11 @@
                 return session
                     .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, releaseName))
                     .AddEntity("Version", typeof(Version))
-                    .List<IVersion>();
+                    .List<IVersion>().AsQueryable();
             }
         }
 
-        public IList<IVersion> GetVersionsOfComponent(string componentName)
+        public IQueryable<IVersion> GetVersionsOfComponent(string componentName)
         {
             using (ISession session = this.sessionFactory.OpenSession())
             {
@@ -262,7 +259,7 @@
                 return session
                     .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, componentName))
                     .AddEntity("Version", typeof(Version))
-                    .List<IVersion>();
+                    .List<IVersion>().AsQueryable();
             }
         }
 
@@ -313,7 +310,7 @@
 
         public void DeleteComponent(IComponent component)
         {
-            IList<IVersion> versions = this.GetVersionsOfComponent(component.Name);
+            IQueryable<IVersion> versions = this.GetVersionsOfComponent(component.Name);
 
             using (ISession session = this.sessionFactory.OpenSession())
             {

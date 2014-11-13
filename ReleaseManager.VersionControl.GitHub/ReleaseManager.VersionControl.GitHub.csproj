@@ -39,8 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="GitHubRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReleaseManager.Model\ReleaseManager.Model.csproj">
+      <Project>{0617A147-F56F-42F1-9E60-99545C08DE10}</Project>
+      <Name>ReleaseManager.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReleaseManager.VersionControl.Interfaces\ReleaseManager.VersionControl.Interfaces.csproj">
+      <Project>{4940E95D-0D90-4CB0-8351-2981AB06A366}</Project>
+      <Name>ReleaseManager.VersionControl.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

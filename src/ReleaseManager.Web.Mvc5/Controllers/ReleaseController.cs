@@ -12,7 +12,7 @@
     {
         public ActionResult New()
         {
-            IList<IComponent> components = Core.Repo.GetComponents();
+            IList<IComponent> components = Core.Repo.GetComponents().ToList();
             IList<ReleaseComponentViewModel> list =
                 components.Select(c => new ReleaseComponentViewModel(c.Name, null, GetSuggestedNextStartRevision(c.Name))).ToList();
 
@@ -21,7 +21,7 @@
 
         public long GetSuggestedNextStartRevision(string componentName)
         {
-            IList<IVersionWork> versions = Core.Repo.GetVersionsOfComponent(componentName);
+            IList<IVersionWork> versions = Core.Repo.GetVersionsOfComponent(componentName).ToList();
             long? maxSelectedRevision = versions.Max(v => v.SelectedRevision);
             long? maxEndRevision = versions.Max(v => v.EndRevision);
             return ((maxSelectedRevision ?? maxEndRevision) ?? 0) + 1;
@@ -31,8 +31,8 @@
         public ActionResult Edit(string releaseName)
         {
             IRelease release = Core.Repo.GetRelease(releaseName);
-            IList<IComponent> components = Core.Repo.GetComponents();
-            IList<IVersionWork> versions = Core.Repo.GetVersionsInRelease(releaseName);
+            IList<IComponent> components = Core.Repo.GetComponents().ToList();
+            IList<IVersionWork> versions = Core.Repo.GetVersionsInRelease(releaseName).ToList();
 
             IList<ReleaseComponentViewModel> list = 
                 components.Select(
@@ -79,7 +79,7 @@
             release.ReleaseManager = releaseEdits.ReleaseManager;
             Core.Repo.SaveRelease(release);
 
-            IList<IVersionWork> versions = Core.Repo.GetVersionsInRelease(release.Name);
+            IList<IVersionWork> versions = Core.Repo.GetVersionsInRelease(release.Name).ToList();
 
             foreach(ReleaseComponentViewModel component in releaseEdits.Components)
             {
@@ -145,7 +145,7 @@
             {
                 return new ErrorController().Message("release not found");
             }
-            IList<IVersionWork> versionsInRelease = Core.Repo.GetVersionsInRelease(releaseName);
+            IList<IVersionWork> versionsInRelease = Core.Repo.GetVersionsInRelease(releaseName).ToList();
             return View(view, new ReleaseViewModel(release, versionsInRelease));
         }
 

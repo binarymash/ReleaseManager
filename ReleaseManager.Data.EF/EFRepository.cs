@@ -1,17 +1,16 @@
 ﻿namespace ReleaseManager.Data.EF
 {
     using System;
-    using System.Collections.Generic;
-    using System.Globalization;
+    using System.Linq;
     using Model;
     using ReleaseManager.Data.Interfaces;
     using ReleaseManager.Model.Interfaces;
-    using Version = System.Version;
 
     public class EFRepository : IEntityRepository, IDisposable
     {
-        private static EFRepository instance;
-        //private readonly ISessionFactory sessionFactory;
+        private static EFRepository _instance;
+        private ReleaseManagerContext _context;
+
 
         public IRelease CreateRelease(string name)
         {
@@ -59,209 +58,39 @@
 
         public IComponent GetComponent(string componentName)
         {
-            return GetComponentImpl(componentName);
+            return _context.Components.FirstOrDefault(c => c.Name == componentName);
         }
 
-        private Component GetComponentImpl(string componentName)
+        public IQueryable<IComponent> GetComponents()
         {
-            return null;
-//            const string query =
-//                @"select
-//                    c.Id,
-//                    c.Name,
-//                    c.Location,
-//                    c.Active,
-//                    (select max(SelectedRevision) from [Version] where ComponentId = c.Id) as HighestReleasedRevision
-//                from Component c
-//                where Name = '{0}'";
-
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                IList<Component> components =
-//                    session
-//                        .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, componentName))
-//                        .AddEntity("Component", typeof(Component))
-//                        .List<Component>();
-
-//                if (components.Count == 1)
-//                {
-//                    return components[0];
-//                }
-//                return null;
-//            }
-        }
-
-        public IList<IComponent> GetComponents()
-        {
-            return null;
-
-//            const string query =
-//                @"select
-//                    c.Id,
-//                    c.Name,
-//                    c.Location,
-//                    c.Active
-//                from Component c";
-
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                return session
-//                    .CreateSQLQuery(query)
-//                    .AddEntity("Component", typeof(Component))
-//                    .List<Component>()
-//                    .ToList<IComponent>();
-//            }
+            return _context.Components;
         }
         
         public IRelease GetRelease(string releaseName)
         {
-            return this.GetReleaseImpl(releaseName);
+            return _context.Releases.FirstOrDefault(r => r.Name == releaseName);
         }
 
-        private Release GetReleaseImpl(string releaseName)
+        public IQueryable<IRelease> GetReleases()
         {
-            return null;
-//            const string query =
-//                @"select
-//                    Id, 
-//                    Name, 
-//                    ReleaseManager, 
-//                    ReleaseDate 
-//                from 
-//                    Release
-//                where
-//                    Name ='{0}'";
-
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                IList<Release> releases = session
-//                    .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, releaseName))
-//                    .AddEntity("Release", typeof(Release))
-//                    .List<Release>();
-
-//                if (releases.Count == 1)
-//                {
-//                    return releases[0];
-//                }
-//                return null;
-//            }
-        }
-
-        public IList<IRelease> GetReleases()
-        {
-            return new List<IRelease>();
-//            const string query =
-//                @"select
-//                    Id, 
-//                    Name, 
-//                    ReleaseManager, 
-//                    ReleaseDate 
-//                from 
-//                    Release";
-
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                return session
-//                    .CreateSQLQuery(query)
-//                    .AddEntity("Release", typeof(Release))
-//                    .List<Release>()
-//                    .Cast<IRelease>()
-//                    .ToList();
-//            }
+            return _context.Releases;
         }
 
         public IVersion GetVersion(string releaseName, string componentName)
         {
-            return null;
-
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                const string query =
-//                    @"select
-//                        v.Id, 
-//                        v.ReleaseId, 
-//                        v.ComponentId, 
-//                        v.StartRevision, 
-//                        v.EndRevision,
-//                        v.SelectedRevision
-//                    from
-//                        Version v 
-//                        join Release r
-//                            on v.ReleaseId = r.Id 
-//                        join Component c 
-//                            on v.ComponentId = c.Id
-//                    where
-//                        r.Name = '{0}'
-//                        and c.Name = '{1}'";
-
-//                IList<IVersion> versions = 
-//                    session
-//                        .CreateSQLQuery(string.Format(
-//                            CultureInfo.InvariantCulture, 
-//                            query, 
-//                            releaseName,
-//                            componentName))
-//                        .AddEntity("Version", typeof(Version))
-//                        .List<IVersion>();
-
-//                if (versions.Count == 1)
-//                {
-//                    return versions[0];
-//                }
-//                return null;
-//            }
+            return _context.Versions.FirstOrDefault(v => 
+                v.Release.Name == releaseName && 
+                v.Component.Name == componentName);
         }
 
-        public IList<IVersion> GetVersionsInRelease(string releaseName)
+        public IQueryable<IVersion> GetVersionsInRelease(string releaseName)
         {
-            return null;
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                const string query = 
-//                    @"select
-//                        v.Id, 
-//                        v.ReleaseId,
-//                        v.ComponentId,
-//                        v.StartRevision,
-//                        v.EndRevision,
-//                        v.SelectedRevision
-//                    from
-//                        Version v
-//                        join Release r
-//                            on v.ReleaseId = r.Id
-//                    where r.Name = '{0}'";
-
-//                return session
-//                    .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, releaseName))
-//                    .AddEntity("Version", typeof(Version))
-//                    .List<IVersion>();
-//            }
+            return _context.Versions.Where(v => v.Release.Name == releaseName).Select(v => v);
         }
 
-        public IList<IVersion> GetVersionsOfComponent(string componentName)
+        public IQueryable<IVersion> GetVersionsOfComponent(string componentName)
         {
-            return null;
-//            using (ISession session = this.sessionFactory.OpenSession())
-//            {
-//                const string query =
-//                    @"select
-//                        v.Id, 
-//                        v.ReleaseId,
-//                        v.ComponentId,
-//                        v.StartRevision,
-//                        v.EndRevision,
-//                        v.SelectedRevision
-//                    from
-//                        Version v
-//                        join Component c
-//                            on v.ComponentId = c.Id
-//                    where c.Name = '{0}'";
-
-//                return session
-//                    .CreateSQLQuery(string.Format(CultureInfo.InvariantCulture, query, componentName))
-//                    .AddEntity("Version", typeof(Version))
-//                    .List<IVersion>();
-//            }
+            return _context.Versions.Where(v => v.Component.Name == componentName);
         }
 
         public void SaveComponent(IComponent component)
@@ -296,7 +125,7 @@
 
         public static IEntityRepository Instance
         {
-            get { return instance ?? (instance = new EFRepository()); }
+            get { return _instance ?? (_instance = new EFRepository()); }
         }
 
         public void DeleteVersion(IVersion version)

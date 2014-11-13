@@ -27,7 +27,7 @@ namespace ReleaseManager
             return this.entityRepo.GetComponent(componentName);
         }
 
-        public IList<IComponent> GetComponents()
+        public IQueryable<IComponent> GetComponents()
         {
             return this.entityRepo.GetComponents();
         }
@@ -37,7 +37,7 @@ namespace ReleaseManager
             return this.entityRepo.GetRelease(releaseName);
         }
 
-        public IList<IRelease> GetReleases()
+        public IQueryable<IRelease> GetReleases()
         {
             return this.entityRepo.GetReleases();
         }
@@ -47,14 +47,14 @@ namespace ReleaseManager
             return new VersionWork(this.entityRepo.GetVersion(releaseName, componentName), this.builder);
         }
 
-        public IList<IVersionWork> GetVersionsInRelease(string releaseName)
+        public IQueryable<IVersionWork> GetVersionsInRelease(string releaseName)
         {
-            return this.entityRepo.GetVersionsInRelease(releaseName).Select(v => new VersionWork(v, this.builder)).Cast<IVersionWork>().ToList();
+            return this.entityRepo.GetVersionsInRelease(releaseName).Select(v => new VersionWork(v, this.builder)).Cast<IVersionWork>();
         }
 
-        public IList<IVersionWork> GetVersionsOfComponent(string componentName)
+        public IQueryable<IVersionWork> GetVersionsOfComponent(string componentName)
         {
-            return this.entityRepo.GetVersionsOfComponent(componentName).Select(v => new VersionWork(v, this.builder)).Cast<IVersionWork>().ToList();
+            return this.entityRepo.GetVersionsOfComponent(componentName).Select(v => new VersionWork(v, this.builder)).Cast<IVersionWork>();
         }
 
         public void SaveRelease(IRelease release)
