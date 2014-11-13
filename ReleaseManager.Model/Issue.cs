@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Model
 {
+    using System;
+    using Interfaces;
+
     public class Issue : IIssue
     {
         public string Assignee{get; set; }

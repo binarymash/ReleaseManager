@@ -2,6 +2,8 @@
 
 namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public interface IRevisionCollection : IEnumerable<IRevisionSetItem>
     {
         IList<IIssue> AllIssues { get; }

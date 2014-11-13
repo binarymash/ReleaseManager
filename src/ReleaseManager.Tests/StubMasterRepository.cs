@@ -1,10 +1,11 @@
-﻿using ReleaseManager.Tests.Persistence;
-using ReleaseManager.Tests.Subversion;
-using ReleaseManager.Subversion;
+﻿using ReleaseManager.Tests.Subversion;
 using ReleaseManager.Tests.Jira;
 
 namespace ReleaseManager.Tests
 {
+    using NHibernate;
+    using VersionControl.Svn;
+
     public static class MasterRepositoryFactory
     {
         public static MasterRepository CreateStubRepo()

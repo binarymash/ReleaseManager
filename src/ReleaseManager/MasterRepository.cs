@@ -6,6 +6,7 @@ using ReleaseManager.Model.Interfaces;
 namespace ReleaseManager
 {
     using Data.Interfaces;
+    using VersionControl.Interfaces;
 
     public class MasterRepository
     {

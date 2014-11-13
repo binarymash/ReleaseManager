@@ -4,6 +4,7 @@
     using Castle.Windsor;
     using Castle.Windsor.Configuration.Interpreters;
     using ReleaseManager.Jira;
+    using Tracking.Jira;
 
 
     public class Core

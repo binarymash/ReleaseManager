@@ -7,6 +7,7 @@ namespace ReleaseManager.Tests.Jira
     using System.Globalization;
     using NUnit.Framework;
     using ReleaseManager.Jira;
+    using Tracking.Jira;
 
     [TestFixture]
     [Category("StatusMap")]

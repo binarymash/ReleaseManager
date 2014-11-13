@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class JiraConfigException : Exception
     {

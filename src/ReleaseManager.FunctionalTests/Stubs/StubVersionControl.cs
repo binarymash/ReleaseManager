@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ReleaseManager.Subversion;
 using System.IO;
 
 namespace ReleaseManager.FunctionalTests.Stubs
 {
+    using VersionControl.Interfaces;
+
     public class StubVersionControl : ISvnClient
     {
         private IList<SvnLogEventArgsWrapper> ReadLogFromFile(string path)

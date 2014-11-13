@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
     public struct GetLogItemsArgs
     {

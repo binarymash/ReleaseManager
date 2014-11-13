@@ -5,6 +5,7 @@ namespace ReleaseManager.Tests.Jira
     using System.Configuration;
     using NUnit.Framework;
     using ReleaseManager.Jira;
+    using Tracking.Jira;
 
     public class JiraConfigSpecs : BehaviorDrivenSpecificationBase
     {

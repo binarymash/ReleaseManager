@@ -2,6 +2,8 @@
 
 namespace ReleaseManager.Jira.SoapClient
 {
+    using Tracking.Jira;
+
     public partial class JiraSoapServiceClient : IJiraSoapClient
     {
         string IJiraSoapClient.login(string userName, string password)

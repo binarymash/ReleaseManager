@@ -1,8 +1,8 @@
-﻿using SharpSvn;
-using System;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Interfaces
 {
+    using SharpSvn;
+    using System;
+
     public class SvnLogEventArgsWrapper
     {
         private readonly SvnLogEventArgs args;

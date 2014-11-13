@@ -1,10 +1,11 @@
-﻿using ReleaseManager.Jira;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace ReleaseManager
 {
+    using Model;
     using Model.Interfaces;
+    using VersionControl.Interfaces;
 
     public class RevisionSetBuilder : IRevisionSetBuilder
     {

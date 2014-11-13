@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using NHibernate;
-using NHibernate.Cfg;
-using System.Linq;
-
-namespace ReleaseManager.NHibernate
+﻿namespace ReleaseManager.Data.NHibernate
 {
-    using Data.Interfaces;
-    using Model;
-    using Model.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using ReleaseManager.Data.Interfaces;
+    using ReleaseManager.Model;
+    using ReleaseManager.Model.Interfaces;
+    using global::NHibernate;
+    using global::NHibernate.Cfg;
+    using Version = Model.Version;
 
     public class NHibernateRepository : IEntityRepository, IDisposable
     {

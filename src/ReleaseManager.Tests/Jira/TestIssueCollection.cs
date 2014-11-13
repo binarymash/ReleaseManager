@@ -1,6 +1,7 @@
-﻿namespace ReleaseManager.Tests.Core.Jira
+﻿namespace ReleaseManager.Tests.Jira
 {
-    using System;
+    using Model;
+    using Model.Interfaces;
     using NUnit.Framework;
     using ReleaseManager.Jira;
     using System.Collections.Generic;

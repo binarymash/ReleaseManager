@@ -5,10 +5,11 @@ using NUnit.Framework;
 using WatiN.Core;
 using ReleaseManager.FunctionalTests.WebServer;
 using ReleaseManager.FunctionalTests.Drivers;
-using ReleaseManager.Tests.Persistence;
 
 namespace ReleaseManager.FunctionalTests.Tests
 {
+    using ReleaseManager.Tests.NHibernate;
+
     public class DevServerTestBase
     {
         private const string Port = "57228"; // Matches the DevelopmentServerPort in ReleaseManager.Web

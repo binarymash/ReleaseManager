@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Interfaces
 {
+    using System;
+    using System.Collections.Generic;
+
     // This interface duplicates the required parts of the SharpSvn SvnClient to enable mocking
     public interface ISvnClient : IDisposable
     {

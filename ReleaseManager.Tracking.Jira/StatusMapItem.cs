@@ -1,7 +1,7 @@
-﻿using System.Configuration;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
+    using System.Configuration;
+
     public class StatusMapItem: ConfigurationElement
     {
         [ConfigurationProperty("status")]

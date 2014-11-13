@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.Model
 {
+    using System;
+    using System.Collections.Generic;
+    using Interfaces;
+
     public class LogItem : ILogItem
     {
         public LogItem()

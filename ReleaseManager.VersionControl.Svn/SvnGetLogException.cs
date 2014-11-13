@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class SvnGetLogException : Exception
     {

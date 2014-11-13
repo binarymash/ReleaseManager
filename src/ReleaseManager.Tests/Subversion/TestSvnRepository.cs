@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
-using ReleaseManager.Subversion;
 
 namespace ReleaseManager.Tests.Subversion
 {
+    using Model.Interfaces;
+    using VersionControl.Svn;
+
     [TestFixture]
     public class TestSvnRepository
     {

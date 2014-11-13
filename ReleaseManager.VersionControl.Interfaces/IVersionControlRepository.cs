@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace ReleaseManager
+﻿namespace ReleaseManager.VersionControl.Interfaces
 {
+    using System.Collections.Generic;
+    using Model.Interfaces;
+
     public interface IVersionControlRepository
     {
         IEnumerable<ILogItem> GetLogItems(string target, long startRevision, long? endRevision);

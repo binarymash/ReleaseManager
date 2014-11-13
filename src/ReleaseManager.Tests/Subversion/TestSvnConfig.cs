@@ -3,7 +3,7 @@ namespace ReleaseManager.Tests.Subversion
 {
     using System.Configuration;
     using NUnit.Framework;
-    using ReleaseManager.Subversion;
+    using VersionControl.Svn;
 
     public class SvnConfigSpecs : BehaviorDrivenSpecificationBase
     {

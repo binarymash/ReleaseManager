@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Configuration;
-using ReleaseManager.Jira.SoapClient;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Configuration;
+    using Model;
+    using Model.Interfaces;
+    using ReleaseManager.Jira;
+    using ReleaseManager.Jira.SoapClient;
+
     public class JiraRepository : IIssueRepository, IDisposable
     {
         private static readonly IDictionary<string, CachedItem> cache = new Dictionary<string, CachedItem>();

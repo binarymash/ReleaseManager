@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ReleaseManager.Subversion;
 
 namespace ReleaseManager.Tests.Subversion
 {
+    using VersionControl.Interfaces;
+
     public class StubSvnClient : ISvnClient
     {
         private readonly List<StubLogEvent> logEvents;

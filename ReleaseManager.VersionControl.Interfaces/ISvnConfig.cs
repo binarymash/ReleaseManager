@@ -1,4 +1,4 @@
-﻿namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Interfaces
 {
     public interface ISvnConfig
     {

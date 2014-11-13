@@ -1,4 +1,4 @@
-﻿namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
     public interface IRemoteIssue
     {

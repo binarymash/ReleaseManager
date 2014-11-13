@@ -1,9 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
+    using System;
+    using System.Configuration;
+    using System.Globalization;
+
     public class JiraConfig : ConfigurationSection, IJiraConfig
     {
         private const string sectionName = "jiraClient";

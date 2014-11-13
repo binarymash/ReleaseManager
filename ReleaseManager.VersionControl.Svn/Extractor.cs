@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
     public class Extractor
     {
         private readonly Regex expression;

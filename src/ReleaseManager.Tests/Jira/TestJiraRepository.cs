@@ -7,6 +7,9 @@ using ReleaseManager.Jira;
 
 namespace ReleaseManager.Tests.Jira
 {
+    using Model.Interfaces;
+    using Tracking.Jira;
+
     public class StatusMap : IStatusMap
     {
         Dictionary<string, bool> statuses;

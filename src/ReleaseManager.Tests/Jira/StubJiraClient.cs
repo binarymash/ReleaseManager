@@ -5,6 +5,8 @@ using System.IO;
 
 namespace ReleaseManager.Tests.Jira
 {
+    using Tracking.Jira;
+
     public class StubJiraClient: IJiraSoapClient
     {
         private class RemoteStatus: IRemoteStatus

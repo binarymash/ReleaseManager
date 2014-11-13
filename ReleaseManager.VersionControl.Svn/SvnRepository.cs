@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Configuration;
+    using Interfaces;
+    using Model;
+    using Model.Interfaces;
+
     public class SvnRepository : IVersionControlRepository, IDisposable
     {
         private readonly ISvnClient client;

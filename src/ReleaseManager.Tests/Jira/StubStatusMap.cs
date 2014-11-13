@@ -5,6 +5,8 @@ using ReleaseManager.Jira;
 
 namespace ReleaseManager.Tests.Jira
 {
+    using Tracking.Jira;
+
     public class StubStatusMap: IStatusMap
     {
         private IDictionary<string, bool> _statusMap;

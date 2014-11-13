@@ -1,7 +1,7 @@
-using System;
-
-namespace ReleaseManager.Jira
+namespace ReleaseManager.Tracking.Jira
 {
+    using System;
+
     public interface IJiraConfig
     {
         string UserName { get; }

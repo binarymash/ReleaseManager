@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
+    using System.Collections.Generic;
+
     public static class DirectiveExtractor
     {
         private static readonly Extractor extractor = new Extractor(@"(?<=^|\W)\$(?<flag>\w+)\b", "flag");

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
-using SysConfig = System.Configuration;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
-    public class SvnConfig : SysConfig.ConfigurationSection, ISvnConfig
+    using System;
+    using System.Configuration;
+    using System.Globalization;
+    using Interfaces;
+
+    public class SvnConfig : ConfigurationSection, ISvnConfig
     {
-        [SysConfig.ConfigurationProperty("userName")]
+        [System.Configuration.ConfigurationProperty("userName")]
         public string UserName
         {
             get { return GetBaseValue<string>("userName"); }
         }
 
-        [SysConfig.ConfigurationProperty("password")]
+        [System.Configuration.ConfigurationProperty("password")]
         public string Password
         {
             get { return GetBaseValue<string>("password"); }
@@ -79,7 +79,7 @@ namespace ReleaseManager.Subversion
             return LoadConfiguration(ConfigurationManager.GetSection("subversionClient"));
         }
 
-        static public ISvnConfig GetConfiguration(SysConfig.Configuration configuration)
+        static public ISvnConfig GetConfiguration(System.Configuration.Configuration configuration)
         {
             return LoadConfiguration(configuration.GetSection("subversionClient"));
         }

@@ -1,12 +1,13 @@
-﻿using SharpSvn;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-
-namespace ReleaseManager.Subversion
+﻿namespace ReleaseManager.VersionControl.Svn
 {
+    using Interfaces;
+    using SharpSvn;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Net;
+
     public class SvnClientWrapper : ISvnClient
     {
         private readonly SvnClient client = new SvnClient();

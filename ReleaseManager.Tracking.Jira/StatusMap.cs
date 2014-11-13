@@ -1,7 +1,7 @@
-﻿using System.Configuration;
-
-namespace ReleaseManager.Jira
+﻿namespace ReleaseManager.Tracking.Jira
 {
+    using System.Configuration;
+
     public class StatusMap: ConfigurationElementCollection, IStatusMap
     {
         protected override ConfigurationElement CreateNewElement()

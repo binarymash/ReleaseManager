@@ -1,13 +1,11 @@
-﻿namespace ReleaseManager.Tests.Persistence
+﻿namespace ReleaseManager.Tests.NHibernate
 {
-    using Data.Interfaces;
-    using Model;
-    using Model.Interfaces;
+    using Data.NHibernate;
+    using ReleaseManager.Data.Interfaces;
+    using ReleaseManager.Model;
+    using ReleaseManager.Model.Interfaces;
     using NUnit.Framework;
-    using global::NHibernate;
     using global::NHibernate.Cfg;
-    using global::NHibernate.Tool;
-    using ReleaseManager.NHibernate;
 
     public static class SQLiteDatabase
     {

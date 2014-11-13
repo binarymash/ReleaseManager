@@ -4,6 +4,8 @@ using System.Linq;
 
 namespace ReleaseManager
 {
+    using Model.Interfaces;
+
     public class RevisionCollection : IRevisionCollection
     {
         private readonly List<IRevisionSetItem> revisions = new List<IRevisionSetItem>();
