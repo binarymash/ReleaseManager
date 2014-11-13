@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="hibernate-configuration" type="NHibernate.Cfg.ConfigurationSectionHandler, NHibernate" />
+    <section name="jiraClient" type="ReleaseManager.Jira.JiraConfig, ReleaseManager, Version=1.0.0.0, Culture=neutral" />
+    <section name="subversionClient" type="ReleaseManager.Subversion.SvnConfig, ReleaseManager.Core, Version=1.0.0.0, Culture=neutral" />
+    <section name="castle" type="Castle.Windsor.Configuration.AppDomain.CastleSectionHandler, Castle.Windsor" />
+  </configSections>
+
+  <!--
+  <castle>
+    <components>
+      <component id="master.repository" type="ReleaseManager.MasterRepository, ReleaseManager" />
+      <component id="issue.repository" service="ReleaseManager.IIssueRepository, ReleaseManager" type="ReleaseManager.Jira.JiraRepository, ReleaseManager" />
+      <component id="versionControl.repository" service="ReleaseManager.IVersionControlRepository, ReleaseManager" type="ReleaseManager.Subversion.SvnRepository, ReleaseManager" />
+      <component id="entity.repository" service="ReleaseManager.IEntityRepository, ReleaseManager" type="ReleaseManager.NHibernate.NHibernateRepository, ReleaseManager" />
+    </components>
+  </castle>
+  -->
+
+  <castle>
+    <components>
+      <component id="master.repository" type="ReleaseManager.MasterRepository, ReleaseManager" />
+      <component id="issue.repository" service="ReleaseManager.IIssueRepository, ReleaseManager" type="ReleaseManager.Jira.JiraRepository, ReleaseManager">
+        <parameters>
+          <client>${jira.soapClient}</client>
+          <baseUri>http://jira</baseUri>
+          <cacheExpiryPeriod>00:02:00</cacheExpiryPeriod>
+          <statusMap>${jira.statusMap}</statusMap>          
+        </parameters>
+      </component>
+      <component id="versionControl.repository" service="ReleaseManager.IVersionControlRepository, ReleaseManager" type="ReleaseManager.Subversion.SvnRepository, ReleaseManager">
+        <parameters>
+          <client>${svn.client}</client>
+        </parameters>
+      </component>
+      <component id="entity.repository" service="ReleaseManager.IEntityRepository, ReleaseManager" type="ReleaseManager.NHibernate.NHibernateRepository, ReleaseManager" />
+      <component id="jira.soapClient" service="ReleaseManager.Jira.IJiraSoapClient, ReleaseManager" type="ReleaseManager.Tests.Jira.StubJiraClient, ReleaseManager.Tests">
+        <parameters>
+          <path>jiraIssues.txt</path>
+        </parameters>        
+      </component>/&gt;
+      <component id="jira.statusMap" service="ReleaseManager.Jira.IStatusMap" type="ReleaseManager.Tests.Jira.StubStatusMap, ReleaseManager.Tests">
+        <parameters>
+          <path>jiraStatusMap.txt</path>
+        </parameters>
+      </component>/&gt;
+      <component id="svn.client" service="ReleaseManager.Subversion.ISvnClient, ReleaseManager" type="ReleaseManager.FunctionalTests.Stubs.StubVersionControl, ReleaseManager.FunctionalTests" />
+    </components>
+  </castle>
+
+  <hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+    <session-factory>
+      <property name="dialect">NHibernate.Dialect.SQLiteDialect</property>
+      <property name="connection.connection_string">Data Source=nhibernate.db;Version=3</property>
+      <property name="connection.driver_class">NHibernate.Driver.SQLiteDriver</property>
+      <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+      <mapping assembly="ReleaseManager" />
+    </session-factory>
+  </hibernate-configuration>
+
+  <jiraClient userName="" password="" cacheExpireTime="00:05:00" baseUri="">
+    <statusMap>
+      <add status="Open" canBeReleased="false" />
+      <add status="Ready for release" canBeReleased="true" />
+      <add status="Sprint candidate" canBeReleased="false" />
+      <add status="In QA" canBeReleased="false" />
+      <add status="Dev done" canBeReleased="false" />
+      <add status="Dev. Done" canBeReleased="false" />
+      <add status="Deployed" canBeReleased="true" />
+      <add status="Closed" canBeReleased="true" />
+      <add status="In Progress" canBeReleased="false" />
+      <add status="Resolved" canBeReleased="true" />
+      <add status="Moved to India" canBeReleased="true" />
+      <add status="Blocked" canBeReleased="false" />
+    </statusMap>
+  </jiraClient>
+
+  <subversionClient userName="" password="" />
+
+  <!--
+  <hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+    <session-factory>
+      <property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
+      <property name="connection.connection_string">Server=(local);initial catalog=ReleaseManager;Integrated Security=SSPI</property>
+      <mapping assembly="ReleaseManager" />
+    </session-factory>
+  </hibernate-configuration>
+  -->
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Web.Abstractions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Routing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+        <add assembly="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" />
+      </assemblies>
+    </compilation>
+
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+      </namespaces>
+    </pages>
+
+    <authentication mode="Forms">
+      <forms loginUrl="~/Account/Login.aspx" timeout="2880" />
+    </authentication>
+
+    <membership>
+      <providers>
+        <clear />
+        <add name="AspNetSqlMembershipProvider" type="System.Web.Security.SqlMembershipProvider" connectionStringName="ApplicationServices" enablePasswordRetrieval="false" enablePasswordReset="true" requiresQuestionAndAnswer="false" requiresUniqueEmail="false" maxInvalidPasswordAttempts="5" minRequiredPasswordLength="6" minRequiredNonalphanumericCharacters="0" passwordAttemptWindow="10" applicationName="/" />
+      </providers>
+    </membership>
+
+    <profile>
+      <providers>
+        <clear />
+        <add name="AspNetSqlProfileProvider" type="System.Web.Profile.SqlProfileProvider" connectionStringName="ApplicationServices" applicationName="/" />
+      </providers>
+    </profile>
+
+    <roleManager enabled="false">
+      <providers>
+        <clear />
+        <add name="AspNetSqlRoleProvider" type="System.Web.Security.SqlRoleProvider" connectionStringName="ApplicationServices" applicationName="/" />
+        <add name="AspNetWindowsTokenRoleProvider" type="System.Web.Security.WindowsTokenRoleProvider" applicationName="/" />
+      </providers>
+    </roleManager>
+
+  </system.web>
+
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true" />
+  </system.webServer>
+
+  <system.serviceModel>
+    <bindings>
+      <basicHttpBinding>
+        <binding name="jirasoapservice-v2SoapBinding" closeTimeout="00:01:00" openTimeout="00:01:00" receiveTimeout="00:10:00" sendTimeout="00:01:00" allowCookies="false" bypassProxyOnLocal="false" hostNameComparisonMode="StrongWildcard" maxBufferSize="65536" maxBufferPoolSize="524288" maxReceivedMessageSize="65536" messageEncoding="Text" textEncoding="utf-8" transferMode="Buffered" useDefaultWebProxy="true">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384" maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <security mode="None">
+            <transport clientCredentialType="None" proxyCredentialType="None" realm="" />
+            <message clientCredentialType="UserName" algorithmSuite="Default" />
+          </security>
+        </binding>
+      </basicHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="" binding="basicHttpBinding" bindingConfiguration="jirasoapservice-v2SoapBinding" contract="JiraSoap.JiraSoapService" name="jirasoapservice-v2" />
+    </client>
+  </system.serviceModel>
+
+  <runtime>
+
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+
+      <dependentAssembly>
+
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" culture="neutral" />
+
+        <bindingRedirect oldVersion="0.0.0.0-1.5.2.14234" newVersion="1.5.2.14234" />
+
+      </dependentAssembly>
+
+      <dependentAssembly>
+
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+
+      </dependentAssembly>
+
+    </assemblyBinding>
+
+  </runtime>
+</configuration>
