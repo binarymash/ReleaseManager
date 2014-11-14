@@ -213,6 +213,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ReleaseManager.Data.EF\ReleaseManager.Data.EF.csproj">
+      <Project>{765075f6-0ce5-478a-888c-c07699cbc57a}</Project>
+      <Name>ReleaseManager.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.Data.Interfaces\ReleaseManager.Data.Interfaces.csproj">
+      <Project>{051bdb11-d231-47e0-a961-48d070fd6d07}</Project>
+      <Name>ReleaseManager.Data.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ReleaseManager.Model\ReleaseManager.Model.csproj">
       <Project>{0617a147-f56f-42f1-9e60-99545c08de10}</Project>
       <Name>ReleaseManager.Model</Name>
@@ -220,6 +228,26 @@
     <ProjectReference Include="..\..\ReleaseManager.Tracking.Jira\ReleaseManager.Tracking.Jira.csproj">
       <Project>{D37A8602-ECC2-4160-AFEE-CE1F29BEF2F0}</Project>
       <Name>ReleaseManager.Tracking.Jira</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.VersionControl.GitHub\ReleaseManager.VersionControl.GitHub.csproj">
+      <Project>{63febf07-c786-414a-ad3e-de3dbe0b54d0}</Project>
+      <Name>ReleaseManager.VersionControl.GitHub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.VersionControl.Interfaces\ReleaseManager.VersionControl.Interfaces.csproj">
+      <Project>{4940e95d-0d90-4cb0-8351-2981ab06a366}</Project>
+      <Name>ReleaseManager.VersionControl.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ReleaseManager.VersionControl.Svn\ReleaseManager.VersionControl.Svn.csproj">
+      <Project>{56a6e626-233a-49bd-8992-39ff1b63e725}</Project>
+      <Name>ReleaseManager.VersionControl.Svn</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReleaseManager.FunctionalTests\ReleaseManager.FunctionalTests.csproj">
+      <Project>{a1ad64f6-fa18-4f37-80eb-1f2ade0a8336}</Project>
+      <Name>ReleaseManager.FunctionalTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReleaseManager.Tests\ReleaseManager.Tests.csproj">
+      <Project>{c48b7990-7137-406b-b737-d69c3ef61a40}</Project>
+      <Name>ReleaseManager.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReleaseManager\ReleaseManager.csproj">
       <Project>{f53efe12-779e-46c9-9441-acdd7a1c434e}</Project>
